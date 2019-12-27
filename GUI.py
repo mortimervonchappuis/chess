@@ -1,10 +1,13 @@
 from tkinter import *
 from PIL import Image, ImageTk
 from game import Game
+from time import sleep
 
 
 def mouse_click(event=None):
 	global first, second, game
+	if game.chess.colour == 'B':
+		return
 	x = event.x
 	y = event.y
 	for row in range(8):
@@ -16,11 +19,13 @@ def mouse_click(event=None):
 					second = (row, column)
 					if game(first, second):
 						board_update()
+						game.answer()
+						board_update()
 					first, second = (), ()
 
 
 def board_update():
-	global game
+	global game, master, full_board
 	newboard = Image.open("board.png")
 	newboard = newboard.resize((800,800), Image.ANTIALIAS)
 	for i  in range(8):
@@ -32,6 +37,8 @@ def board_update():
 	global full_board
 	full_board.configure(image=img)
 	full_board.image = img
+	master.update()
+	return
 
 
 master = Tk()
