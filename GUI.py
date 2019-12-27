@@ -37,6 +37,7 @@ def board_update():
 master = Tk()
 master.title("KIASA Chess-Engine") # (Kasparow Is A Sexist Arsehole)
 board = Image.open("board.png")
+
 rw = Image.open("rook_white.png")
 nw = Image.open("knight_white.png")
 bw = Image.open("bishop_white.png")
@@ -49,6 +50,7 @@ bb = Image.open("bishop_black.png")
 kb = Image.open("king_black.png")
 qb = Image.open("queen_black.png")
 pb = Image.open("pawn_black.png")
+
 rw = rw.resize((100,100), Image.ANTIALIAS)
 nw = nw.resize((100,100), Image.ANTIALIAS)
 bw = bw.resize((100,100), Image.ANTIALIAS)
@@ -61,6 +63,7 @@ bb = bb.resize((100,100), Image.ANTIALIAS)
 kb = kb.resize((100,100), Image.ANTIALIAS)
 qb = qb.resize((100,100), Image.ANTIALIAS)
 pb = pb.resize((100,100), Image.ANTIALIAS)
+
 tkimage = ImageTk.PhotoImage(board)
 full_board = Label(master, image=tkimage)
 full_board.pack()

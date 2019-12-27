@@ -13,4 +13,5 @@ class Game:
 			self.board = result
 			self.chess.toggle()
 			return True
-		return False
+		else:
+			return False
