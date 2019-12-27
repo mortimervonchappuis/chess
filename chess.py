@@ -18,6 +18,8 @@ class Chess:
 		self.rocharde_white_right = True
 		self.rocharde_black_left = True
 		self.rocharde_black_right = True
+		self.rocharde_white = False
+		self.rocharde_black = False
 
 
 	def inv(self, colour):
@@ -119,9 +121,15 @@ class Chess:
 			if self.check():
 				util -= 15
 		if not self.rocharde_white_left and self.rocharde_white_right:
+			if not self.rocharde_white:
 				util -= 30
-		if not self.rocharde_black_left and self.rocharde_black_right:
+			else:
 				util += 30
+		if not self.rocharde_black_left and self.rocharde_black_right:
+			if not self.rocharde_black:
+				util += 30
+			else:
+				util -= 30
 		if self.board[3][4] == 'PB':
 			util -= 5
 		if self.board[4][4] == 'PB':
@@ -150,16 +158,20 @@ class Chess:
 			if self.colour == 'W':
 				if self.rocharde_white_left and j_s == 7:
 					board[i_s][4:] = ['  ', 'RW', 'KW', '  ']
+					self.rocharde_white = True
 					return board
 				elif self.rocharde_white_right and j_s == 0:
 					board[i_s][:5] = ['  ', '  ', 'KW', 'RW', '  ']
+					self.rocharde_white = True
 					return board
 			elif self.colour == 'B':
 				if self.rocharde_black_left and j_s == 7:
 					board[i_s][4:] = ['  ', 'RB', 'KB', '  ']
+					self.rocharde_black = True
 					return board
 				elif self.rocharde_black_right and j_s == 0:
 					board[i_s][:5] = ['  ', '  ', 'KB', 'RB', '  ']
+					self.rocharde_black = True
 					return board
 		if board[i_d][j_d][0] == 'P':
 			if self.colour == 'W' and i_d == 6:
