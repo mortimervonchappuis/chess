@@ -6,8 +6,8 @@ from time import sleep
 
 def mouse_click(event=None):
 	global first, second, game
-	#if game.chess.colour == 'B':
-	#	return
+	if game.chess.colour == 'B':
+		return
 	x = event.x
 	y = event.y
 	for row in range(8):
@@ -19,8 +19,8 @@ def mouse_click(event=None):
 					second = (row, column)
 					if game(first, second):
 						board_update()
-						#game.answer()
-						#board_update()
+						game.answer()
+						board_update()
 					first, second = (), ()
 
 

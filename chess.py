@@ -238,7 +238,7 @@ class Chess:
 							return True
 						elif figure == 'R' and king in self.rook((i, j), board, self.inv(colour)):
 							return True
-		return True
+		return False
 
 
 	def legal_moves(self):
