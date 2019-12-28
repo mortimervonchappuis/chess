@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 from game import Game
 from time import sleep
+from playsound import playsound
 
 
 def mouse_click(event=None):
@@ -38,6 +39,7 @@ def board_update():
 	full_board.configure(image=img)
 	full_board.image = img
 	master.update()
+	playsound('placement.mp3')
 	return
 
 

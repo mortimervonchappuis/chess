@@ -4,7 +4,7 @@ import pathos.pools as p
 
 
 class Kiasa:
-	def __init__(self, depth=3, max_d=1<<15):
+	def __init__(self, depth=2, max_d=1<<15):
 		self.chess = Chess()
 		self.depth = depth
 		self.max_d = max_d
@@ -36,8 +36,8 @@ class Kiasa:
 		#	return chess.utility()
 		moves = chess.legal_moves()
 		d_next = d * max(len(moves), 1)
-		util = chess.utility()
 		if d_next > self.max_d and n <= 0:
+			util = chess.utility()
 			return util
 		if chess.colour == 'W':
 			#if u > 0 and util > 0:
