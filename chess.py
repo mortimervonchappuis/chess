@@ -5,14 +5,15 @@ class Chess:
 	def __init__(self, board=None):
 		if board is None:
 			self.board = [
-			['RW', 'NW', 'BW', 'QW', 'KW', 'BW', 'NW', 'RW', ],
-			['PW', 'PW', 'PW', 'PW', 'PW', 'PW', 'PW', 'PW', ],
-			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
-			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
-			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
-			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
+			['RB', 'NB', 'BB', 'QB', 'KB', 'BB', 'NB', 'RB', ],
 			['PB', 'PB', 'PB', 'PB', 'PB', 'PB', 'PB', 'PB', ],
-			['RB', 'NB', 'BB', 'QB', 'KB', 'BB', 'NB', 'RB', ],]
+			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
+			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
+			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
+			['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  ', ],
+			['PW', 'PW', 'PW', 'PW', 'PW', 'PW', 'PW', 'PW', ],
+			['RW', 'NW', 'BW', 'QW', 'KW', 'BW', 'NW', 'RW', ],
+			]
 		self.colour = 'W'
 		self.rocharde_white_left = True
 		self.rocharde_white_right = True
@@ -174,11 +175,11 @@ class Chess:
 					self.rocharde_black = True
 					return board
 		if board[i_d][j_d][0] == 'P':
-			if self.colour == 'W' and i_d == 6:
+			if self.colour == 'W' and i_d == 1:
 				board[i_s][j_s] = 'QW'
 				board[i_d][j_d] = '  '
 				return board
-			elif self.colour == 'B' and i_d == 1:
+			elif self.colour == 'B' and i_d == 6:
 				board[i_s][j_s] = 'QB'
 				board[i_d][j_d] = '  '
 				return board
@@ -299,25 +300,25 @@ class Chess:
 		moves = []
 		i, j = dom
 		if colour == 'W':
-			if i == 1 and board[i+1][j] == '  ' and board[i+2][j] == '  ':
-				moves.append((i+2, j))
-			if 0 < i < 7:
-				if board[i+1][j] == '  ':
-					moves.append((i+1, j))
-				if 0 < j < 7 and board[i+1][j+1][1] == 'B':
-					moves.append((i+1, j+1))
-				if 0 < j < 7 and board[i+1][j-1][1] =='B':
-					moves.append((i+1, j-1))
-		elif colour == 'B':
 			if i == 6 and board[i-1][j] == '  ' and board[i-2][j] == '  ':
 				moves.append((i-2, j))
 			if 0 < i < 7:
 				if board[i-1][j] == '  ':
 					moves.append((i-1, j))
-				if 0 < j < 7 and board[i-1][j+1][1] == 'W':
+				if 0 <= j < 7 and board[i-1][j+1][1] == 'B':
 					moves.append((i-1, j+1))
-				if 0 < j < 7 and board[i-1][j-1][1] == 'W':
+				if 0 < j <= 7 and board[i-1][j-1][1] == 'B':
 					moves.append((i-1, j-1))
+		elif colour == 'B':
+			if i == 1 and board[i+1][j] == '  ' and board[i+2][j] == '  ':
+				moves.append((i+2, j))
+			if 0 < i < 7:
+				if board[i+1][j] == '  ':
+					moves.append((i+1, j))
+				if 0 <= j < 7 and board[i+1][j+1][1] == 'W':
+					moves.append((i+1, j+1))
+				if 0 < j <= 7 and board[i+1][j-1][1] == 'W':
+					moves.append((i+1, j-1))
 		return moves
 
 
