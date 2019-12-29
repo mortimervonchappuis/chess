@@ -20,8 +20,10 @@ def mouse_click(event=None):
 					second = (row, column)
 					if game(first, second):
 						board_update()
+						playsound('placement.mp3')
 						game.answer()
 						board_update()
+						playsound('placement.mp3')
 					first, second = (), ()
 
 
@@ -29,7 +31,7 @@ def board_update():
 	global game, master, full_board
 	newboard = Image.open("board.png")
 	newboard = newboard.resize((800,800), Image.ANTIALIAS)
-	for i  in range(8):
+	for i in range(8):
 		for j in range(8):
 			figure = game.board[i][j]
 			if figure != '  ':
@@ -39,7 +41,6 @@ def board_update():
 	full_board.configure(image=img)
 	full_board.image = img
 	master.update()
-	playsound('placement.mp3')
 	return
 
 

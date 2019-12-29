@@ -21,8 +21,10 @@ class Kiasa:
 		try:
 			if self.chess.colour == 'W':
 				dom, sub = max(values.items(), key=lambda x: x[1])[0]
+				print(f'utility {max(values.items(), key=lambda x: x[1])[1]}')
 			elif self.chess.colour == 'B':
 				dom, sub = min(values.items(), key=lambda x: x[1])[0]
+				print(f'utility {min(values.items(), key=lambda x: x[1])[1]}')
 		except:
 			print('RESIGN')
 			quit()
@@ -40,15 +42,11 @@ class Kiasa:
 			util = chess.utility()
 			return util
 		if chess.colour == 'W':
-			#if u > 0 and util > 0:
-			#	return float('-inf')
 			try:
 				return max(self.minimax(copy(chess), dom, sub, n-1, d=d_next) for dom, sub in moves)
 			except:
 				return float('-inf')
 		elif chess.colour == 'B':
-			#if u > 0 and util > 0:
-			#	return float('inf')
 			try:
 				return min(self.minimax(copy(chess), dom, sub, n-1, d=d_next) for dom, sub in moves)
 			except:
